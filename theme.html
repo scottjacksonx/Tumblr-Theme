@@ -11,6 +11,7 @@
         body { color: #333; font: normal 16px/22px "Helvetica Neue", Helvetica, Arial, sans-serif; background: #fff; text-shadow:0 0 0 #FFFFFF;}
         pre { font-size: 10px; }
         a { color:#333; text-decoration: underline; padding: 1px 2px; font-weight:bold; }
+        a.none {text-decoration: none; padding: none; }
         a:hover { color: #666; background: none; }
         h1 { color:#666; font-weight: bold; margin-bottom:0px; letter-spacing:-1px; text-transform:uppercase;}
         h2 { color:#666; font-weight: normal; margin-bottom:2px; font-size:30px; line-height:32px; }
@@ -29,8 +30,8 @@
         .main { margin: 50px 0px; }
         .datetime { font-size: 12px; line-height: 150%; color: #555; padding: 0 25px 45px 0; text-align: right; }
         .datetime a { color: #555; font-weight:bold; }
-        .navleft { font-size: 12px; position: relative; }
-        .navright { font-size: 12px; position: relative; }
+        .navleft { font-size: 24px; position: relative; float:left;}
+        .navright { font-size: 24px; position: relative; float:right;}
         .navcenter { font-size: 12px; text-align:center;}
         .footer { margin-bottom:10px; font-size: 12px; line-height: 14px; text-align:center; color: #333; }        
         .post { padding-bottom: 10px; } 
@@ -162,11 +163,13 @@
 
         {block:Pagination}
 {block:PreviousPage}
-<div class="navleft"style="text-align:center;">
-&larr;&nbsp;<a href="{PreviousPage}">Newer</a>&nbsp;|&nbsp;
+<div class="navleft">
+<a class="none" href="{PreviousPage}" title="Newer posts">&larr;</a>
+</div>
 {/block:PreviousPage}
 {block:NextPage}
-<a href="{NextPage}">Older</a>&nbsp;&rarr;
+<div class="navright">
+<a class="none" href="{NextPage}" title="Older posts">&rarr;</a>
 </div>
 {/block:NextPage}
 
