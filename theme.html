@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>{Title}</title>
+    <link rel="icon" href="{Favicon}"/>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}"/>
+    <meta name="viewport" content="width=600"/> <!-- iPhone -->
+    <meta name="description" content="{Description}"/>
+    <style type="text/css">
+        * { margin: 0; padding: 0; }
+        body { color: #333; font: normal 16px/22px "Helvetica Neue", Helvetica, Arial, sans-serif; background: #fff; text-shadow:0 0 0 #FFFFFF;}
+        pre { font-size: 10px; }
+        a { color:#333; text-decoration: underline; padding: 1px 2px; font-weight:bold; }
+        a:hover { color: #666; background: none; }
+        h1 { color:#666; font-weight: bold; margin-bottom:0px; letter-spacing:-1px; text-transform:uppercase;}
+        h2 { color:#666; font-weight: normal; margin-bottom:2px; font-size:30px; line-height:32px; }
+        h3 { color:#666; font-weight: normal !important; margin-bottom:0px; }
+        h4 { color:#666; font-weight: normal; margin-bottom:0px; }
+        img { background: #fff !important; border: 1px solid #999; padding: 9px; margin: 0px; max-width: 500px; }
+        img a { text-decoration: none !important; background: #fff !important; margin: 0px; }
+
+        .photo a, .disqus a { text-decoration: none !important; background: #fff !important; }
+        .header { margin: 10px 0 0 0; }
+        .header h1 {line-height:56px; font-size:56px; font-weight:500; text-align:center;}
+        .header h1 a { font-weight:normal; }
+        .header h2 {font-size:18px; font-weight:200; letter-spacing:-1px; line-height:22px; text-align:center; }
+        input { border: 1px solid #999; width: 80px; }
+        .wrapper { width: 750px; margin: auto; }
+        .main { margin: 50px 0px; }
+        .datetime { font-size: 12px; line-height: 150%; color: #555; padding: 0 25px 45px 0; text-align: right; }
+        .datetime a { color: #555; font-weight:bold; }
+        .navleft { font-size: 12px; position: relative; }
+        .navright { font-size: 12px; position: relative; }
+        .navcenter { font-size: 12px; text-align:center;}
+        .footer { margin-bottom:10px; font-size: 12px; line-height: 14px; text-align:center; color: #333; }        
+        .post { padding-bottom: 10px; } 
+        .post p { margin:14px 0 14px 0; }
+        .post ul{ list-style:circle; margin:10px 10px 10px 35px; }
+        .post ol{ list-style:decimal; margin:10px 10px 10px 35px; }
+        .post blockquote {color:#444; border-left:5px solid #ccc; margin:25px 30px 15px 10px; padding-left:20px;}        
+        .short_quote { margin: 0px; padding: 0px; font-size:48px; line-height: 110%; color: #666; } 
+        .medium_quote { margin: 0px; padding: 0px; font-size:36px; line-height: 115%; color: #666; } 
+        .long_quote { margin: 0px; padding: 0px; font-size:24px; line-height: 130%; color: #666; } 
+        .caption { margin-bottom:10px; font-size:22px; line-height:26px; }
+        a .notes { text-decoration: none !important; background: none; } 
+        .notes a { text-decoration: none !important; background: none; } 
+        img .notes { margin: 0px; padding: 3px 3px 0px 3px; border: 1px solid #999; } 
+        .notes img { margin: 0px; padding: 3px 3px 0px 3px; border: none } 
+        ol.notes { padding: 0px; margin: 25px 0px; list-style-type: none; border-bottom: solid 1px #ccc; }
+        ol.notes li.note { border-top: solid 1px #ccc; padding: 10px; }
+        ol.notes li.note img.avatar { vertical-align: -4px; margin-right: 10px; width: 16px; height: 16px; }
+        ol.notes li.note span.action { font-weight: bold; }
+        ol.notes li.note .answer_content { font-weight: normal; }
+        ol.notes li.note blockquote { border-color: #eee; padding: 4px 10px; margin: 10px 0px 0px 25px; }
+        ol.notes li.note blockquote a { text-decoration: none; }
+        .disqus { font-family: Georgia, 'Times New Roman', Times !important; size: 16px; line-height:150% !important; color:#333 !important; }
+
+        {CustomCSS}
+        
+    </style>
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h1><a href="/" style="text-decoration:none;">{Title}</a></h1>
+        <h2>{Description}</h2>
+      </div>
+      <div class="post">
+        <div class="navcenter">
+          <form action="/search" method="get">
+            <a href="/">home</a> / <a href="http://scottjackson.org/about/">about</a> / <a href="mailto:scottjacksonx@gmail.com">contact</a> / <a href="/archive/">archive</a> / <a href="{RSS}">rss</a>
+          </form><br/>
+          <hr/>
+        </div>
+      </div>
+      <div class="main">
+        {block:SearchPage}
+        <div class="post">
+          <div class="datetime">
+            {SearchResultCount} result(s)
+          </div>
+          searched for <em>{SearchQuery}</em>
+        </div>
+        {/block:SearchPage}
+        
+        {block:Posts}
+        <div class="post">
+        {block:Regular}
+          {block:Title}<h2><a href="{Permalink}" class="permalink">{Title}</a></h2>{/block:Title}
+          <p>{Body}</p>
+        {/block:Regular}
+
+        {block:Photo}
+          <span class="photo">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" title="{PhotoAlt}">{LinkCloseTag}</span>
+          <p class="caption">{Caption}</p>
+        {/block:Photo}
+
+        {block:Quote}
+          <p><span class="{Length}_quote">{Quote}</span></p>
+          {block:Source}<p>&mdash;&nbsp;{Source}</p>{/block:Source}
+        {/block:Quote}
+
+        {block:Video}
+          {Video-500}
+          <p>{Caption}</p>
+        {/block:Video}
+
+        {block:Audio}
+          {AudioPlayerGrey}
+          <p>{Caption}</p>
+        {/block:Audio}
+
+        {block:Link}
+          <h2><a href="{URL}" {Target}>{Name}</a>&nbsp;&rarr;</h2>
+          {block:Description}<p>{Description}</p>{/block:Description}
+        {/block:Link}
+
+        {block:Conversation}
+          {block:Title}<h2>{Title}</h2>{/block:Title}
+          <p>
+          {block:Lines}
+          {block:Label}<strong>{Label}</strong>{/block:Label} {Line}<br />
+          {/block:Lines}
+          </p>
+        {/block:Conversation}
+        
+            <div class="datetime">
+            Posted <a href="{Permalink}" class="permalink">{Month} {DayOfMonth}, {Year} at {12Hour}:{Minutes}{AmPm}</a> {block:HasTags}in {block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}{/block:HasTags}
+            {block:Pagination}
+            {block:NoteCount} | 
+            <a href="{Permalink}">{NoteCountWithLabel}</a>{/block:NoteCount} <br />
+            {/block:Pagination}
+            {block:SearchPage} | 
+             {block:NoteCount}& 
+            <a href="{Permalink}">{NoteCountWithLabel}</a>{/block:NoteCount} <br />
+            {/block:SearchPage}
+            {block:PermalinkPage} || 
+            <a href="/">home</a><br />
+            {/block:PermalinkPage}
+          </div>
+        </div>
+        {/block:Posts}
+
+        {block:PermalinkPage}
+        {block:PostNotes}
+        <div class="post">
+          <h3>Notes: </h3>
+          <p>{PostNotes}</p>
+        </div>
+        {/block:PostNotes}
+
+
+        <!-- DISQUS COMMENT CODE -->        
+            <div class="post disqus">
+        
+            </div>
+        <!-- END COMMENT CODE -->  
+        {/block:PermalinkPage}
+
+
+
+        {block:Pagination}
+{block:PreviousPage}
+<div class="navleft"style="text-align:center;">
+&larr;&nbsp;<a href="{PreviousPage}">Newer</a>&nbsp;|&nbsp;
+{/block:PreviousPage}
+{block:NextPage}
+<a href="{NextPage}">Older</a>&nbsp;&rarr;
+</div>
+{/block:NextPage}
+
+        <div class="navcenter">
+        </div>
+        {/block:Pagination}
+        {block:PermalinkPagination}
+        {block:NextPost}
+        <div class="navleft">
+          &larr;&nbsp;<a href="{PreviousPost}">older post</a>
+        </div>
+        {/block:NextPost}
+        {block:PreviousPost}
+        <div class="navright">
+          <a href="{NextPost}">newer post</a>&nbsp;&rarr;
+        </div>
+        {/block:PreviousPost}
+        {/block:PermalinkPagination}
+
+      </div>
+      <div class="post">
+        <div class="footer">
+            <a href="http://tumblr.com">Tumblr</a> theme by <a href="http://ifthisthenthat.tumblr.com">Elisha Rene</a><br/><br/>
+      <input type="text" name="q" value="{SearchQuery}"/>&nbsp;&nbsp;<input type="submit" value="Search"/>
+        </div>    
+      </div>
+      <div align="center">
+
+      </div>
+    </div>
+
+
+  </body>
+</html>
